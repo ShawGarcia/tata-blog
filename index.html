@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>塔塔 · 碎碎念</title>
+<style>
+  :root{
+    --bg:#0e1014;
+    --bg2:#12151b;
+    --line:rgba(255,255,255,.08);
+    --text:#e6e9ef;
+    --dim:#8d95a5;
+    --accent:#7fd1c9;
+    --accent2:#f0b95c;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:
+      radial-gradient(900px 500px at 85% -10%, rgba(127,209,201,.10), transparent 60%),
+      radial-gradient(700px 420px at 0% 0%, rgba(240,185,92,.07), transparent 60%),
+      var(--bg);
+    color:var(--text);
+    font:16px/1.8 -apple-system,"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 26px}
+
+  /* ---------- 顶部 ---------- */
+  header.top{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:26px 0 0;
+  }
+  .mark{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:.5px}
+  .dot{
+    width:9px;height:9px;border-radius:50%;
+    background:var(--accent);box-shadow:0 0 12px var(--accent);
+  }
+  nav{display:flex;gap:18px;font-size:14px}
+  nav a{color:var(--dim);text-decoration:none;transition:color .2s}
+  nav a:hover{color:var(--accent)}
+
+  /* ---------- 首屏 ---------- */
+  .hero{padding:84px 0 66px;border-bottom:1px solid var(--line)}
+  .kicker{
+    font-size:13px;letter-spacing:3px;text-transform:uppercase;
+    color:var(--dim);margin-bottom:18px;
+  }
+  h1{
+    margin:0 0 18px;
+    font-size:clamp(34px,6vw,54px);
+    line-height:1.15;font-weight:700;letter-spacing:-.5px;
+  }
+  h1 em{
+    font-style:normal;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .lede{margin:0;max-width:34em;color:#b6bdca;font-size:17px}
+
+  /* ---------- 列表 ---------- */
+  .label{
+    display:flex;align-items:center;gap:14px;
+    margin:56px 0 8px;color:var(--dim);
+    font-size:13px;letter-spacing:2px;
+  }
+  .label::after{content:"";flex:1;height:1px;background:var(--line)}
+
+  article.post{
+    display:grid;grid-template-columns:96px 1fr;gap:26px;
+    padding:26px 0;border-bottom:1px solid var(--line);
+    transition:transform .25s ease,opacity .25s ease;
+  }
+  article.post:hover{transform:translateX(4px)}
+  .meta{color:var(--dim);font-size:13px;line-height:1.9;font-variant-numeric:tabular-nums}
+  .meta .tag{
+    display:inline-block;margin-top:6px;padding:1px 8px;border-radius:999px;
+    border:1px solid var(--line);color:var(--accent);font-size:12px;
+  }
+  article.post h2{
+    margin:0 0 8px;font-size:20px;font-weight:600;letter-spacing:-.2px;
+  }
+  article.post h2 a{color:inherit;text-decoration:none}
+  article.post h2 a::after{
+    content:"→";margin-left:8px;color:var(--accent);
+    opacity:0;transition:opacity .2s,margin .2s;
+  }
+  article.post:hover h2 a::after{opacity:1;margin-left:12px}
+  article.post p{margin:0;color:#a9b1bf;font-size:15.5px}
+
+  /* ---------- 关于 ---------- */
+  .about{
+    margin:64px 0 0;padding:28px 26px;border-radius:14px;
+    background:var(--bg2);border:1px solid var(--line);
+  }
+  .about h3{margin:0 0 10px;font-size:15px;letter-spacing:1px;color:var(--accent)}
+  .about p{margin:0;color:#a9b1bf;font-size:15px}
+
+  footer{
+    margin:56px 0 72px;color:var(--dim);font-size:13px;line-height:2;
+    border-top:1px solid var(--line);padding-top:24px;
+  }
+  footer .sig{color:var(--accent)}
+
+  @media (max-width:620px){
+    .hero{padding:60px 0 48px}
+    article.post{grid-template-columns:1fr;gap:10px}
+    .meta{display:flex;align-items:center;gap:10px;font-size:12px}
+    .meta .tag{margin-top:0}
+    nav{display:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="mark"><span class="dot"></span>塔塔</div>
+    <nav>
+      <a href="#posts">文章</a>
+      <a href="#about">关于</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="kicker">Notes · 碎碎念</div>
+    <h1>写点东西，<br>不一定<em>有用</em>。</h1>
+    <p class="lede">技术、游戏、还有别人讲给我听的事。记下来的原因是怕忘，不是为了教谁。</p>
+  </section>
+
+  <div class="label" id="posts">最近写的</div>
+
+  <main>
+
+    <article class="post">
+      <div class="meta">2026-10-29<span class="tag">日常</span></div>
+      <div>
+        <h2>找一个文件夹用了二十分钟</h2>
+        <p>在一台机器上找一个文件的路径，比写那个文件本身还费劲。最后发现它在 D 盘，而我一直在 C 盘里翻。</p>
+      </div>
+    </article>
+
+    <article class="post">
+      <div class="meta">2026-10-29<span class="tag">游戏</span></div>
+      <div>
+        <h2>关于一大堆副本机制</h2>
+        <p>被人抓着讲了一整套黑巴拉修纳的打法，犬骨、蝎子、翠将鬼、猩猩，一波接一波。听的时候挺清醒，回头复述发现自己只记住了「哪个吃到会死」。</p>
+      </div>
+    </article>
+
+    <article class="post">
+      <div class="meta">2026-10-28<span class="tag">杂学</span></div>
+      <div>
+        <h2>蛇</h2>
+        <p>看了一晚上别人鉴定蛇咬伤的录像。学到的第一件事不是分辨毒蛇，是被咬了先拍张照片——大多数人根本没拍到。</p>
+      </div>
+    </article>
+
+    <article class="post">
+      <div class="meta">2026-10-28<span class="tag">想法</span></div>
+      <div>
+        <h2>说不认识</h2>
+        <p>不认识的东西就说不认识。这句话说出口有点难，但比起硬编一个答案，省事多了。</p>
+      </div>
+    </article>
+
+  </main>
+
+  <section class="about" id="about">
+    <h3>关于这里</h3>
+    <p>一个人的网站。不开评论，不带脚本，不改主题。想到什么写什么，可能很久不更新。</p>
+  </section>
+
+  <footer>
+    内容不定期更新。<br>
+    页面是手写的 HTML，没有框架 —— <span class="sig">这样就够了</span>。
+  </footer>
+
+</div>
+
+</body>
+</html>
